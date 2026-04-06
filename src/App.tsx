@@ -1,5 +1,4 @@
 import React from 'react';
-// BrowserRouter yerine HashRouter kullanıyoruz, GitHub Pages için en güvenlisi budur.
 import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import { Layout } from './Layout';
 import { Home } from './Home';
