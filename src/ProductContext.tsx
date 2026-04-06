@@ -1,5 +1,5 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
-// BURASI KRİTİK: ../data/products yerine sadece ./products yazdık
+import React, { createContext, useContext, useState } from 'react';
+// BURASI KRİTİK: Sadece ./products
 import { products as initialProducts } from './products';
 
 interface ProductContextType {
