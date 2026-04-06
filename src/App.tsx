@@ -1,5 +1,6 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+// BrowserRouter yerine HashRouter kullanıyoruz, GitHub Pages için en güvenlisi budur.
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import { Layout } from './Layout';
 import { Home } from './Home';
 import { Categories } from './Categories';
@@ -10,7 +11,7 @@ import { ProductProvider } from './ProductContext';
 function App() {
   return (
     <ProductProvider>
-      <Router basename="/moda-sapka-yeni">
+      <Router>
         <Layout>
           <Routes>
             <Route path="/" element={<Home />} />
