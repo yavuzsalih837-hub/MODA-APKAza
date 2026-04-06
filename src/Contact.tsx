@@ -1,76 +1,50 @@
-import { motion } from 'motion/react';
-import { Phone, MapPin, MessageCircle } from 'lucide-react';
-import { CONTACT_INFO } from '../constants';
+import React from 'react';
+import { Phone, Mail, MapPin, Instagram } from 'lucide-react';
+// BURASI KRİTİK: Yolu ./constants olarak düzelttik
+import { CONTACT_INFO } from './constants';
 
-export const Contact = () => {
+export const Contact: React.FC = () => {
   return (
-    <div className="py-24 px-6">
-      <div className="max-w-7xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="text-center mb-16"
-        >
-          <span className="text-gold-500 tracking-[0.3em] uppercase text-xs mb-4 block">Bize Ulaşın</span>
-          <h1 className="text-4xl md:text-6xl font-serif mb-6">Toptan Satış İçin İletişime Geçin</h1>
-          <p className="text-gray-400 max-w-2xl mx-auto font-light">
-            Ürünler, fiyatlar ve stok bilgisi için WhatsApp üzerinden bizimle iletişime geçebilirsiniz.
-          </p>
-        </motion.div>
+    <div className="py-16 px-4 bg-gray-50 min-h-screen">
+      <div className="max-w-4xl mx-auto">
+        <div className="text-center mb-12">
+          <h1 className="text-4xl font-serif font-bold text-gray-900 mb-4">İletişim</h1>
+          <p className="text-gray-600">Toptan sipariş ve sorularınız için bizimle iletişime geçin.</p>
+        </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-16">
-          <div className="lg:col-span-1 space-y-12">
-            <div>
-              <h3 className="text-xl font-serif text-gold-400 mb-6 flex items-center">
-                <MapPin className="mr-3 text-gold-500" size={20} />
-                Showroom
-              </h3>
-              <a 
-                href={CONTACT_INFO.address.mapsUrl} 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-gray-400 leading-relaxed hover:text-gold-300 transition-colors block"
-              >
-                {CONTACT_INFO.address.text}
-              </a>
-            </div>
-
-            <div>
-              <h3 className="text-xl font-serif text-gold-400 mb-6 flex items-center">
-                <Phone className="mr-3 text-gold-500" size={20} />
-                İletişim
-              </h3>
-              <p className="text-gray-400 leading-relaxed">
-                Telefon: {CONTACT_INFO.whatsapp.number}<br />
-                WhatsApp: {CONTACT_INFO.whatsapp.number}
-              </p>
-            </div>
-
-            </div>
-
-            <div className="lg:col-span-2 flex items-center justify-center">
-              <div className="w-full max-w-xl bg-navy-800/50 border border-gold-500/10 p-12 rounded-lg text-center">
-                <div className="w-20 h-20 bg-gold-500/10 rounded-full flex items-center justify-center mx-auto mb-8">
-                  <MessageCircle className="text-gold-500" size={40} />
-                </div>
-                <h2 className="text-2xl font-serif mb-6 text-white">Hızlı İletişim Hattı</h2>
-                <p className="text-gray-400 mb-10 leading-relaxed">
-                  Toptan siparişleriniz ve her türlü sorunuz için doğrudan WhatsApp üzerinden ekibimize ulaşabilirsiniz.
-                </p>
-                <motion.a 
-                  href="https://wa.me/905332659304?text=Merhaba,%20toptan%20şapka%20hakkında%20bilgi%20almak%20istiyorum."
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  whileHover={{ y: -2 }}
-                  whileTap={{ scale: 0.97 }}
-                  transition={{ duration: 0.2 }}
-                  className="inline-flex items-center justify-center bg-gold-500 hover:bg-gold-400 text-navy-900 px-12 py-5 text-sm font-bold tracking-[0.2em] uppercase transition-all duration-300 rounded-sm w-full md:w-auto"
-                >
-                  <MessageCircle size={20} className="mr-3" />
-                  WhatsApp'tan Yaz
-                </motion.a>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
+            <h2 className="text-2xl font-serif font-bold mb-6">Bize Ulaşın</h2>
+            <div className="space-y-6">
+              <div className="flex items-center space-x-4">
+                <div className="bg-gray-900 p-3 rounded-lg text-white"><Phone size={20} /></div>
+                <div><p className="text-sm text-gray-500">Telefon</p><p className="font-medium">{CONTACT_INFO.phone}</p></div>
+              </div>
+              <div className="flex items-center space-x-4">
+                <div className="bg-gray-900 p-3 rounded-lg text-white"><Instagram size={20} /></div>
+                <div><p className="text-sm text-gray-500">Instagram</p><p className="font-medium">@modasapka</p></div>
+              </div>
+              <div className="flex items-center space-x-4">
+                <div className="bg-gray-900 p-3 rounded-lg text-white"><MapPin size={20} /></div>
+                <div><p className="text-sm text-gray-500">Adres</p><p className="font-medium">{CONTACT_INFO.address}</p></div>
               </div>
             </div>
+          </div>
+
+          <div className="bg-gray-900 text-white p-8 rounded-2xl shadow-lg">
+            <h2 className="text-2xl font-serif font-bold mb-4">Neden Biz?</h2>
+            <ul className="space-y-4 text-gray-300">
+              <li>• Türkiye geneli butiklere toptan satış</li>
+              <li>• En trend şapka ve aksesuar modelleri</li>
+              <li>• Hızlı kargo ve güvenilir iş ortaklığı</li>
+            </ul>
+            <div className="mt-8 pt-8 border-t border-gray-800 text-center">
+              <a href={`https://wa.me/${CONTACT_INFO.phone.replace(/\s/g, '')}`} 
+                 className="inline-block bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-8 rounded-full transition-colors">
+                WhatsApp'tan Yazın
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </div>
