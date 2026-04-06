@@ -1,95 +1,48 @@
 import React from 'react';
-import { motion } from 'motion/react';
-import { Eye, MessageCircle } from 'lucide-react';
-import { CONTACT_INFO } from '../constants';
+import { ShoppingBag } from 'lucide-react';
+// BURASI KRİTİK: ../ sildik, sadece ./ yaptık
+import { CONTACT_INFO } from './constants';
 
-interface ProductCardProps {
-  key?: React.Key;
+interface Product {
+  id: number;
   name: string;
-  price?: string;
+  price: string;
   image: string;
-  description?: string;
-  isNew?: boolean;
-  stockStatus?: string;
-  moq?: number;
-  color?: string;
+  category: string;
 }
 
-export const ProductCard = ({ name, price, image, description, isNew, stockStatus, moq, color }: ProductCardProps) => {
-  const whatsappLink = CONTACT_INFO.whatsapp.getLink(`Merhaba, "${name}" ürünü hakkında bilgi almak istiyorum.`);
-
-  const variants = color ? color.split(',').map(c => c.trim()) : [];
+export const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
+  const whatsappMessage = `Merhaba, ${product.name} ürünü hakkında bilgi alabilir miyim?`;
+  const whatsappUrl = `https://wa.me/${CONTACT_INFO.phone.replace(/\s/g, '')}?text=${encodeURIComponent(whatsappMessage)}`;
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      className="group bg-white border border-gray-100 p-4 rounded-xl shadow-sm hover:shadow-md transition-all duration-300"
-    >
-      <div className="relative aspect-[4/3] overflow-hidden rounded-lg mb-4">
-        {isNew && (
-          <div className="absolute top-2 left-2 z-20 bg-black text-white text-[8px] font-bold tracking-widest uppercase px-2 py-1 rounded">
-            Yeni
-          </div>
-        )}
-        
-        {/* Image Container */}
-        <div className="absolute inset-0 transition-transform duration-700 group-hover:scale-105">
-          <img 
-            src={image} 
-            alt={name} 
-            className="w-full h-full object-cover"
-            referrerPolicy="no-referrer"
-            loading="lazy"
-          />
+    <div className="group bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-xl transition-all duration-300">
+      <div className="relative h-72 overflow-hidden">
+        <img 
+          src={product.image} 
+          alt={product.name}
+          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+        />
+        <div className="absolute top-4 left-4">
+          <span className="bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-semibold text-gray-900 uppercase tracking-wider">
+            {product.category}
+          </span>
         </div>
       </div>
-
-      <div className="space-y-3">
-        <h3 className="text-xs font-bold text-gray-900 line-clamp-2 min-h-[2.5rem]">
-          {name}
-        </h3>
-
-        {variants.length > 0 && (
-          <div className="flex flex-wrap gap-1">
-            {variants.map((v, i) => (
-              <span key={i} className="bg-gray-100 text-gray-600 px-2 py-0.5 rounded text-[9px] font-medium">
-                {v}
-              </span>
-            ))}
-          </div>
-        )}
-
-        <div className="flex items-center justify-between">
-          {stockStatus && (
-            <p className={`text-[10px] font-bold ${
-              stockStatus === 'Stokta Var' ? 'text-green-600' : 
-              stockStatus === 'Sınırlı Stok' ? 'text-orange-500' : 'text-red-500'
-            }`}>
-              {stockStatus}
-            </p>
-          )}
-          {moq && (
-            <p className="text-[10px] text-gray-500">
-              Min. Sipariş: {moq} Adet
-            </p>
-          )}
+      <div className="p-6">
+        <h3 className="text-lg font-serif font-bold text-gray-900 mb-2">{product.name}</h3>
+        <div className="flex items-center justify-between mt-4">
+          <span className="text-xl font-bold text-gray-900">{product.price}</span>
+          <a 
+            href={whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-gray-900 text-white p-3 rounded-xl hover:bg-gray-800 transition-colors shadow-lg shadow-gray-200"
+          >
+            <ShoppingBag size={20} />
+          </a>
         </div>
-
-        <motion.a 
-          href="https://wa.me/905332659304?text=Merhaba,%20bir%20modeliniz%20hakkında%20toptan%20fiyat%20bilgisi%20almak%20istiyorum."
-          target="_blank"
-          rel="noopener noreferrer"
-          whileHover={{ y: -2 }}
-          whileTap={{ scale: 0.97 }}
-          transition={{ duration: 0.2 }}
-          className="flex items-center justify-center w-full bg-transparent border border-gold-500/30 text-gold-600 py-2.5 rounded-lg text-[10px] font-bold uppercase tracking-wider hover:bg-gold-500 hover:text-white transition-all duration-300 no-underline"
-        >
-          <MessageCircle className="mr-2" size={14} />
-          Toptan Fiyat Sor
-        </motion.a>
       </div>
-    </motion.div>
+    </div>
   );
 };
