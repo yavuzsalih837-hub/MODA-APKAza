@@ -42,7 +42,7 @@ const styles = {
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    padding: '28px 44px',
+    padding: '24px 40px',
     borderBottom: '1px solid #7b5a2d',
   } as React.CSSProperties,
 
@@ -55,20 +55,18 @@ const styles = {
 
   navLinks: {
     display: 'flex',
-    gap: '28px',
+    gap: '24px',
     alignItems: 'center',
   } as React.CSSProperties,
 
   navLink: {
-    color: '#f2f2f2',
+    color: '#fff',
     textDecoration: 'none',
     fontWeight: 700,
-    fontSize: '1.05rem',
-    letterSpacing: '0.5px',
   } as React.CSSProperties,
 
   hero: {
-    minHeight: 'calc(100vh - 93px)',
+    minHeight: 'calc(100vh - 89px)',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -79,40 +77,41 @@ const styles = {
 
   title: {
     fontSize: '4rem',
-    marginBottom: '32px',
+    marginBottom: '30px',
     color: '#c79a56',
   } as React.CSSProperties,
 
   heroImage: {
-    width: 'min(420px, 85vw)',
-    height: 'auto',
+    width: '360px',
+    maxWidth: '90%',
     borderRadius: '10px',
-    marginBottom: '28px',
-    boxShadow: '0 0 30px rgba(199, 154, 86, 0.18)',
+    marginBottom: '24px',
+    border: '1px solid #7b5a2d',
     objectFit: 'cover',
+    display: 'block',
   } as React.CSSProperties,
 
   button: {
     display: 'inline-block',
-    padding: '16px 32px',
-    backgroundColor: '#b88746',
+    background: '#b88746',
     color: '#111',
     textDecoration: 'none',
+    padding: '16px 28px',
     fontWeight: 700,
-    border: '1px solid #7b5a2d',
     borderRadius: '6px',
+    marginTop: '12px',
   } as React.CSSProperties,
 
-  katalogWrap: {
+  catalog: {
     maxWidth: '1200px',
     margin: '0 auto',
-    padding: '48px 20px 80px',
+    padding: '60px 20px 80px',
   } as React.CSSProperties,
 
-  katalogTitle: {
-    fontSize: '2.8rem',
+  catalogTitle: {
     textAlign: 'center',
-    marginBottom: '36px',
+    fontSize: '2.5rem',
+    marginBottom: '40px',
     color: '#c79a56',
   } as React.CSSProperties,
 
@@ -123,11 +122,10 @@ const styles = {
   } as React.CSSProperties,
 
   card: {
-    backgroundColor: '#0d0d0d',
+    background: '#0d0d0d',
     border: '1px solid #2a2a2a',
     borderRadius: '12px',
     overflow: 'hidden',
-    boxShadow: '0 8px 24px rgba(0,0,0,0.35)',
   } as React.CSSProperties,
 
   cardImg: {
@@ -135,78 +133,81 @@ const styles = {
     height: '320px',
     objectFit: 'cover',
     display: 'block',
-    backgroundColor: '#111',
   } as React.CSSProperties,
 
   cardBody: {
-    padding: '18px',
+    padding: '16px',
   } as React.CSSProperties,
 
   cardTitle: {
-    fontSize: '1.35rem',
-    margin: '0 0 10px',
+    marginBottom: '10px',
     color: '#e0b16a',
+    fontSize: '1.3rem',
   } as React.CSSProperties,
 
   price: {
-    margin: 0,
-    color: '#f1f1f1',
-    fontSize: '1rem',
+    color: '#fff',
   } as React.CSSProperties,
 };
 
-const Navbar = () => (
-  <nav style={styles.nav}>
-    <Link to="/" style={styles.brand}>
-      MODA ŞAPKA
-    </Link>
-
-    <div style={styles.navLinks}>
-      <Link to="/" style={styles.navLink}>
-        ANA SAYFA
+function Navbar() {
+  return (
+    <nav style={styles.nav}>
+      <Link to="/" style={styles.brand}>
+        MODA ŞAPKA
       </Link>
-      <Link to="/katalog" style={styles.navLink}>
-        KATALOG
+
+      <div style={styles.navLinks}>
+        <Link to="/" style={styles.navLink}>
+          ANA SAYFA
+        </Link>
+        <Link to="/katalog" style={styles.navLink}>
+          KATALOG
+        </Link>
+      </div>
+    </nav>
+  );
+}
+
+function Home() {
+  return (
+    <section style={styles.hero}>
+      <h1 style={styles.title}>2026 Koleksiyonu</h1>
+
+      <img
+        src={`${baseImg}/sapka1.jpeg.jpeg`}
+        alt="Vitrin"
+        style={styles.heroImage}
+      />
+
+      <Link to="/katalog" style={styles.button}>
+        KATALOĞU GÖR
       </Link>
-    </div>
-  </nav>
-);
+    </section>
+  );
+}
 
-const Home = () => (
-  <section style={styles.hero}>
-    <h1 style={styles.title}>2026 Koleksiyonu</h1>
+function Katalog() {
+  return (
+    <section style={styles.catalog}>
+      <h2 style={styles.catalogTitle}>Ürün Kataloğu</h2>
 
-    <img
-      src={`${baseImg}/sapka1.jpeg.jpeg`}
-      alt="Vitrin"
-      style={styles.heroImage}
-    />
-
-    <Link to="/katalog" style={styles.button}>
-      KATALOĞU GÖR
-    </Link>
-  </section>
-);
-
-const Katalog = () => (
-  <section style={styles.katalogWrap}>
-    <h2 style={styles.katalogTitle}>Ürün Kataloğu</h2>
-
-    <div style={styles.grid}>
-      {sapkaModelleri.map((item) => (
-        <div key={item.id} style={styles.card}>
-          <img src={item.img} alt={item.ad} style={styles.cardImg} />
-          <div style={styles.cardBody}>
-            <h3 style={styles.cardTitle}>{item.ad}</h3>
-            <p style={styles.price}>{item.fiyat}</p>
+      <div style={styles.grid}>
+        {sapkaModelleri.map((item) => (
+          <div key={item.id} style={styles.card}>
+            <img src={item.img} alt={item.ad} style={styles.cardImg} />
+            <div style={styles.cardBody}>
+              <h3 style={styles.cardTitle}>{item.ad}</h3>
+              <p style={styles.price}>{item.fiyat}</p>
+            </div>
           </div>
-        </div>
-      ))}
-    </div>
-  </section>
-);
+        ))}
+      </div>
+    </section>
+  );
+}
 
-function App() {
+export default function App() {
   return (
     <Router>
       <div style={styles.page}>
@@ -219,5 +220,3 @@ function App() {
     </Router>
   );
 }
-
-export default App;
