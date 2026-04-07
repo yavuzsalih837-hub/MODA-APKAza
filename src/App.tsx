@@ -1,68 +1,60 @@
 import React from 'react';
 import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 
-// Tasarımın tam oturması için tüm stilleri buraya gömdüm
 const HomePage = () => (
-  <div style={{ 
-    margin: 0, 
-    padding: 0, 
-    backgroundColor: '#000', 
-    color: '#fff', 
-    minHeight: '100vh', 
-    fontFamily: 'sans-serif' 
-  }}>
-    {/* Üst Menü */}
-    <nav style={{ 
-      display: 'flex', 
-      justifyContent: 'space-between', 
-      alignItems: 'center', 
-      padding: '20px 50px', 
-      borderBottom: '1px solid #222' 
-    }}>
+  <div style={{ backgroundColor: '#0a0a0a', color: '#ffffff', minHeight: '100vh', fontFamily: 'serif', margin: 0 }}>
+    {/* Navigasyon */}
+    <nav style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '25px 60px', borderBottom: '1px solid #1a1a1a', backgroundColor: '#000' }}>
       <div>
-        <h1 style={{ margin: 0, color: '#c9a063', fontSize: '1.5rem', letterSpacing: '2px' }}>MODA ŞAPKA</h1>
-        <div style={{ fontSize: '0.7rem', color: '#888' }}>TOPTAN BUTİK</div>
+        <h1 style={{ margin: 0, fontSize: '1.8rem', color: '#c9a063', letterSpacing: '3px', fontWeight: 'bold' }}>MODA ŞAPKA</h1>
+        <div style={{ fontSize: '0.7rem', color: '#666', letterSpacing: '2px', marginTop: '4px' }}>TOPTAN BUTİK DÜNYASI</div>
       </div>
-      <div style={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
-        <span style={{ fontSize: '0.8rem', cursor: 'pointer' }}>ANA SAYFA</span>
-        <span style={{ fontSize: '0.8rem', cursor: 'pointer' }}>KATEGORİLER</span>
-        <span style={{ fontSize: '0.8rem', cursor: 'pointer' }}>İLETİŞİM</span>
-        <button style={{ 
-          backgroundColor: '#c9a063', 
-          border: 'none', 
-          padding: '10px 20px', 
-          fontWeight: 'bold', 
-          cursor: 'pointer',
-          borderRadius: '4px' 
-        }}>TOPTAN SATIŞ TALEBİ</button>
+      <div style={{ display: 'flex', gap: '35px', alignItems: 'center' }}>
+        <span style={{ fontSize: '0.85rem', letterSpacing: '1px', cursor: 'pointer', color: '#eee' }}>ANA SAYFA</span>
+        <span style={{ fontSize: '0.85rem', letterSpacing: '1px', cursor: 'pointer', color: '#eee' }}>KATEGORİLER</span>
+        <span style={{ fontSize: '0.85rem', letterSpacing: '1px', cursor: 'pointer', color: '#eee' }}>İLETİŞİM</span>
+        <button style={{ backgroundColor: '#c9a063', color: '#000', border: 'none', padding: '12px 24px', fontWeight: 'bold', borderRadius: '2px', cursor: 'pointer', fontSize: '0.8rem' }}>TOPTAN SATIŞ TALEBİ</button>
       </div>
     </nav>
 
-    {/* Orta Kısım */}
-    <div style={{ textAlign: 'center', paddingTop: '80px' }}>
-      <h2 style={{ fontSize: '3.5rem', margin: 0, fontWeight: 'normal' }}>Toptan Bayan</h2>
-      <h2 style={{ fontSize: '3.5rem', marginTop: '10px', color: '#c9a063', fontWeight: 'normal', fontStyle: 'italic' }}>Şapka Modelleri</h2>
-      <p style={{ color: '#888', marginTop: '20px' }}>150+ model seçeneği • Türkiye geneli gönderim • Hızlı iletişim</p>
+    {/* Hero Bölümü */}
+    <div style={{ padding: '100px 20px', textAlign: 'center', background: 'radial-gradient(circle, #1a1a1a 0%, #0a0a0a 100%)' }}>
+      <h2 style={{ fontSize: '5rem', margin: 0, fontWeight: 'lighter', opacity: 0.9 }}>Toptan Bayan</h2>
+      <h2 style={{ fontSize: '5rem', marginTop: '-10px', color: '#c9a063', fontWeight: 'lighter', fontStyle: 'italic' }}>Şapka Modelleri</h2>
       
-      <div style={{ marginTop: '40px' }}>
-        <button style={{ 
-          backgroundColor: '#c9a063', 
-          border: 'none', 
-          padding: '15px 30px', 
-          fontSize: '1rem', 
-          fontWeight: 'bold', 
-          cursor: 'pointer',
-          borderRadius: '4px'
-        }}>WHATSAPP'TAN İLETİŞİME GEÇ</button>
+      <p style={{ color: '#888', fontSize: '1.1rem', marginTop: '30px', letterSpacing: '1px' }}>
+        150+ model seçeneği • Türkiye geneli gönderim • Hızlı iletişim
+      </p>
+      
+      <div style={{ marginTop: '50px' }}>
+        <button style={{ backgroundColor: '#c9a063', color: '#000', border: 'none', padding: '18px 40px', fontSize: '1rem', fontWeight: 'bold', cursor: 'pointer', borderRadius: '2px', display: 'inline-flex', alignItems: 'center', gap: '10px' }}>
+          <span>🗨️</span> WHATSAPP'TAN İLETİŞİME GEÇ
+        </button>
       </div>
 
-      <div style={{ marginTop: '60px', width: '100%', maxWidth: '800px', margin: '60px auto 0' }}>
+      {/* Ana Görsel */}
+      <div style={{ marginTop: '80px', position: 'relative', maxWidth: '1100px', margin: '80px auto 0' }}>
         <img 
-          src="https://images.unsplash.com/photo-1514327605112-b887c0e61c0a?w=1000" 
-          alt="Şapka" 
-          style={{ width: '100%', borderRadius: '8px' }} 
+          src="https://images.unsplash.com/photo-1514327605112-b887c0e61c0a?w=1200" 
+          alt="Şapka Vitrini" 
+          style={{ width: '100%', border: '1px solid #222', boxShadow: '0 20px 50px rgba(0,0,0,0.5)' }} 
         />
+        <div style={{ position: 'absolute', bottom: '40px', left: '40px', textAlign: 'left' }}>
+          <div style={{ color: '#c9a063', fontSize: '0.9rem', marginBottom: '5px' }}>YENİ SEZON</div>
+          <div style={{ fontSize: '2rem' }}>2026 KOLEKSİYONU</div>
+        </div>
       </div>
+    </div>
+
+    {/* Alt Bilgi */}
+    <footer style={{ padding: '60px 20px', textAlign: 'center', borderTop: '1px solid #1a1a1a', backgroundColor: '#000', marginTop: '100px' }}>
+      <div style={{ color: '#c9a063', marginBottom: '20px', fontWeight: 'bold' }}>MODA ŞAPKA</div>
+      <p style={{ color: '#555', fontSize: '0.8rem' }}>© 2026 Tüm Hakları Saklıdır. Boutique Mağazalar İçin Özel Tasarımlar.</p>
+    </footer>
+
+    {/* Yüzen WhatsApp */}
+    <div style={{ position: 'fixed', bottom: '40px', right: '40px', backgroundColor: '#25D366', color: '#fff', width: '60px', height: '60px', borderRadius: '50%', display: 'flex', justifyContent: 'center', alignItems: 'center', fontSize: '30px', boxShadow: '0 10px 20px rgba(0,0,0,0.3)', cursor: 'pointer' }}>
+      💬
     </div>
   </div>
 );
